@@ -111,3 +111,8 @@ tmux -V
 gcc --version
 
 
+### 📤 Push Changes to GitHub
+cd ~/infrastructure
+git add setup.md
+git commit -m "Installed and documented core DevOps CLI tools"
+git push -u origin main
