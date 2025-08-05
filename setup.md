@@ -99,20 +99,78 @@ source ~/.bashrc
 - `build-essential`: Compiler and build tools (gcc, make, etc.).
 
 ### Installation Command
-sudo apt update
-sudo apt install curl wget vim htop tmux build-essential -y
+- sudo apt update
+- sudo apt install curl wget vim htop tmux build-essential -y
 
 ## After successful install, verify each:
-curl --version
-wget --version
-vim --version
-htop --version
-tmux -V
-gcc --version
-
+- curl --version
+- wget --version
+- vim --version
+- htop --version
+- tmux -V
+- gcc --version
 
 ### 📤 Push Changes to GitHub
-cd ~/infrastructure
-git add setup.md
-git commit -m "Installed and documented core DevOps CLI tools"
-git push -u origin main
+- cd ~/infrastructure
+- git add setup.md
+- git commit -m "Installed and documented core DevOps CLI tools"
+- git push -u origin main
+
+
+## Install Docker & Docker Compose
+
+# Update package index
+- sudo apt update
+
+# Install Docker and Docker Compose
+- sudo apt install docker.io docker-compose -y
+
+# Add your user to the docker group to avoid using sudo
+- sudo usermod -aG docker $USER
+- newgrp docker
+
+# Verify installation
+- docker --version
+- docker-compose --version
+
+## For the latest Docker Compose version, we install it manually:
+- sudo curl -L "https://github.com/docker/compose/releases/download/v2.38.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+- sudo chmod +x /usr/local/bin/docker-compose
+
+## Verify installation
+- docker-compose --version
+
+## Test Docker Installation
+- docker run hello-world
+
+---
+
+### Push Changes to GitHub
+- cd ~/infrastructure
+- git add setup.md
+- git commit -m "Installed and documented Docker & Docker Compose setup"
+- git push -o original main
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
