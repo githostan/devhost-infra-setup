@@ -85,3 +85,29 @@ source ~/.bashrc
 - git add setup.md
 - git commit -m "Updated setup.md with SSH setup and GitHub push"
 - git push -u origin main
+
+---
+
+## 🧰 Core Dev Tools Installation
+
+### Installed Tools
+- `curl`: Command-line tool for transferring data with URLs.
+- `wget`: Non-interactive downloader for files from the web.
+- `vim`: Lightweight terminal-based text editor.
+- `htop`: Interactive process viewer (better than `top`).
+- `tmux`: Terminal multiplexer for managing multiple sessions.
+- `build-essential`: Compiler and build tools (gcc, make, etc.).
+
+### Installation Command
+sudo apt update
+sudo apt install curl wget vim htop tmux build-essential -y
+
+## After successful install, verify each:
+curl --version
+wget --version
+vim --version
+htop --version
+tmux -V
+gcc --version
+
+
