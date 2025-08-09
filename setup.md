@@ -110,12 +110,11 @@
 - tmux -V
 - gcc --version
 
-# 📤 Push Changes to GitHub
-- cd ~/infrastructure
-- git add setup.md
-- git commit -m "Installed and documented core DevOps CLI tools"
-- git push -u origin main
-
+# Pushed Changes to GitHub
+     ·  cd ~/infrastructure
+     ·  git add setup.md
+     ·  git commit -m "Installed and documented core DevOps CLI tools"
+     ·  git push -o original main
 
 ## Installed Docker & Docker Compose
 
@@ -304,12 +303,69 @@
      ·  git commit -m "Installed and documented k3s, Kind, and Minikube clusters"
      ·  git push -o original main
 
+## IaC and Configuration Management tools- Terraform, AWS CLI, Azure CLI, and Ansible
 
+# Installed Terraform
+# Download Terraform binary
+- curl -LO https://releases.hashicorp.com/terraform/1.8.4/terraform_1.8.4_linux_amd64.zip
 
+# Unzip and move to /usr/local/bin
+- unzip terraform_1.8.4_linux_amd64.zip
 
+# Move the binary to /usr/local/bin
+- sudo mv terraform /usr/local/bin/
+- This puts Terraform in your system's PATH, making it globally accessible.
 
+# Verify installation:
+- terraform version
 
+# Optional (Recommended): Clean up
+- rm terraform_1.8.4_linux_amd64.zip
 
+# Installed AWS CLI
+# Download and install AWS CLI v2
+- curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+- unzip awscliv2.zip
+- sudo ./aws/install
+
+# Verify installation
+- aws --version
+
+# Clean up installer
+- rm -rf aws awscliv2.zip
+
+## Installed Azure CLI
+# Install Azure CLI Manually (Recommended for Ubuntu 24.04)
+- Let’s use the official Microsoft method that works reliably across modern Ubuntu systems:
+
+# Add Microsoft’s GPG Key
+- curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+- sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+- rm microsoft.gpg
+
+# Add Microsoft APT Repo
+- sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ noble main" > /etc/apt/sources.list.d/azure-cli.list'
+- We use noble here since that’s your current Ubuntu version.
+
+# Install the Azure CLI
+- sudo apt update
+- sudo apt install azure-cli -y
+
+# Verify installation
+- az version
+
+#  Installed Ansible
+- sudo apt update
+- sudo apt install ansible -y
+
+# Verification
+- ansible --version
+
+# Pushed Changes to GitHub
+     ·  cd ~/infrastructure
+     ·  git add setup.md
+     ·  git commit -m "Installed and documented Terraform, AWS CLI, Azuere CLI,and Ansible "
+     ·  git push -o original main
 
 
 
