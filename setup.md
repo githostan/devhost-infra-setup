@@ -368,6 +368,126 @@
      ·  git push -o original main
 
 
+## Monitoring & Observability — Prometheus & Grafana
+
+# Installed Prometheus (Manual)
+- Prometheus is a time-series database and monitoring system designed for reliability and scalability.
+
+# Created directory for Prometheus binaries
+- mkdir -p ~/devops-tools/bin/prometheus
+- cd ~/devops-tools/bin/prometheus
+
+# Download and extract Prometheus
+- curl -LO https://github.com/prometheus/prometheus/releases/download/v2.52.0/prometheus-2.52.0.linux-amd64.tar.gz
+- tar -xvf prometheus-2.52.0.linux-amd64.tar.gz
+- mv prometheus-2.52.0.linux-amd64 prometheus
+- rm prometheus-2.52.0.linux-amd64.tar.gz
+
+# Move Prometheus runtime files
+- mv prometheus ~/devops-tools/prometheus-runtime
+
+# Set execute permission (optional)
+- chmod +x ~/devops-tools/bin/prometheus ~/devops-tools/bin/promtool
+
+# Verify installation
+- prometheus --version
+- promtool --version
+
+
+# Installed Grafana (manual install)
+- Grafana visualizes metrics from Prometheus and other sources.
+
+# Created working directory
+- mkdir -p ~/devops-tools/grafana
+- cd ~/devops-tools/grafana
+
+# Download Grafana OSS tarball
+- curl -LO https://dl.grafana.com/oss/release/grafana-10.4.0.linux-amd64.tar.gz
+
+# Extracted it
+- tar -xzf grafana-10.4.0.linux-amd64.tar.gz
+
+# Move Grafana executables to local bin directory
+- mv grafana-v10.4.0/bin/grafana* ~/devops-tools/bin/
+
+# Make binaries executable
+- chmod +x ~/devops-tools/bin/grafana*
+
+#  Verify installation
+- grafana-server -v
+- grafana-cli -v
+
+# Pushed Changes to GitHub
+     ·  cd ~/infrastructure
+     ·  git add setup.md
+     ·  git commit -m "Installed and documented Prometheus & Grafana"
+     ·  git push -u original main
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
