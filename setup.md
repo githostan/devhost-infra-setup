@@ -81,6 +81,11 @@
 -                origin  git@github.com:githostan/devhost-infra-setup.git (fetch)
 -                origin  git@github.com:githostan/devhost-infra-setup.git (push)
 
+# Git Setup PATH
+- System-installed via package manager (apt)
+- Located at: /usr/bin/git
+- Verified with: `which git` ➜ /usr/bin/git
+
 # Final Push to GitHub
      ·  cd ~/infrastructure
      ·  git add setup.md
@@ -88,7 +93,7 @@
      ·  git push -o original main
 ---
 
-## 🧰 Core Dev Tools Installation
+## 🧰 Core Dev Tools Installation (Essential CLI Utilities)
 
 # Installed Tools
 - `curl`: Command-line tool for transferring data with URLs.
@@ -108,7 +113,31 @@
 - vim --version
 - htop --version
 - tmux -V
-- gcc --version
+- gcc --version (build-essential)
+
+# Essential CLI Utilities (System-wide $PATH)
+
+- The following tools were installed via the system package manager (`apt`) and are available at their default locations. No relocation or PATH modification was required.
+
+- | Tool            | Installed via | Binary Path        | Notes                     |
+- |-----------------|---------------|--------------------|---------------------------|
+- | wget            | apt           | /usr/bin/wget      | File downloader           |
+- | vim             | apt           | /usr/bin/vim       | Terminal text editor      |
+- | htop            | apt           | /usr/bin/htop      | Interactive process viewer|
+- | tmux            | apt           | /usr/bin/tmux      | Terminal multiplexer      |
+- | gcc             | apt           | /usr/bin/gcc       | GNU C Compiler            |
+- | build-essential | apt           | N/A (meta-package) | Installs GCC, Make, etc.  |
+
+- Note:
+- `build-essential` is a **meta-package** that installs `gcc`, `make`, and related development tools. It doesn't have its own binary.
+- All binaries are accessible via default system `$PATH`.
+
+# Verified with:
+- which wget
+- which vim
+- which htop
+- which tmux
+- which gcc
 
 # Pushed Changes to GitHub
      ·  cd ~/infrastructure
@@ -116,12 +145,12 @@
      ·  git commit -m "Installed and documented core DevOps CLI tools"
      ·  git push -o original main
 
-## Installed Docker & Docker Compose
+## Installed Docker
 
 # Update package index
 - sudo apt update
 
-# Installed Docker and Docker Compose
+# Installed Docker
 - sudo apt install docker.io docker-compose -y
 
 # Added my user to the docker group to avoid using sudo
@@ -130,19 +159,34 @@
 
 # Verify installation
 - docker --version
-- docker-compose --version
-
-# For the latest Docker Compose version, we installed it manually:
-- sudo curl -L "https://github.com/docker/compose/releases/download/v2.38.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-- sudo chmod +x /usr/local/bin/docker-compose
-
-# Installation verification
-- docker-compose --version
 
 # Tested Docker Installation
 - docker run hello-world
 
----
+# Docker Setup $PATH
+- System-installed via package manager (apt)
+- Located at: /usr/bin/docker
+- Verified with: `which docker` ➜ /usr/bin/docker
+
+
+# Installed Docker-Compose
+# For the latest Docker Compose version, we installed it manually:
+     ·  sudo curl -L "https://github.com/docker/compose/releases/download/v2.38.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+     ·  sudo chmod +x /usr/local/bin/docker-compose
+
+# Installation verification
+- docker-compose --version
+
+# Refactoring Docker-compose directory
+- To improve version control, portability, and isolation, docker-compose was moved from /usr/local/bin to the custom path ~/devops-tools/bin/
+
+- The command:
+     ·  sudo mv /usr/local/bin/docker-compose ~/devops-tools/bin/
+
+- Originally installed into /usr/local/bin via manual download
+- Moved binary to ~/devops-tools/bin/
+- Updated $PATH to prioritize ~/devops-tools/bin
+- Verified with: which docker-compose ➜ /home/sdev/devops-tools/bin/docker-compose
 
 # Pushed Changes to GitHub
      ·  cd ~/infrastructure
@@ -191,6 +235,16 @@
      ·  Bash completion enabled
      ·  Bash completion enabled
 
+# Refactoring kubectl directory after the intial installation & set-up
+-  The Command:
+     ·  sudo mv /usr/local/bin/kubectl ~/devops-tools/bin/
+
+- Originally installed into /usr/local/bin via manual download
+- Moved binary to ~/devops-tools/bin/
+- Updated $PATH to prioritize ~/devops-tools/bin
+- Verified with: which kubectl ➜ /home/sdev/devops-tools/bin/kubectl
+
+
 # Installed kubectx and kubens (Use GitHub repo (official method))
 - sudo git clone https://github.com/ahmetb/kubectx /opt/kubectx
 - sudo ln -s /opt/kubectx/kubectx /usr/local/bin/kubectx
@@ -203,6 +257,16 @@
 - echo 'source ~/.kubens-completion.bash' >> ~/.bashrc
 - echo 'source ~/.kubectx-completion.bash' >> ~/.bashrc
 - source ~/.bashrc
+
+# Refactoring kubectx directory after the intial installation & set-up
+-  The Command:
+     ·  sudo mv /usr/local/bin/kubectx ~/devops-tools/bin/
+
+- Originally installed into /usr/local/bin via manual download
+- Moved binary to ~/devops-tools/bin/
+- Updated $PATH to prioritize ~/devops-tools/bin
+- Verified with: which kubectx ➜ /home/sdev/devops-tools/bin/kubectx
+
 
 # Installed k9s
 # Downloaded latest release:
@@ -221,6 +285,15 @@
 - kubens does not support a --version flag.
 - K9s installed successfully (v0.50.9).
 - These tools will become active once a cluster is installed (next step).
+
+# Refactoring k9s directory after the intial installation & set-up
+-  The Command:
+     ·  sudo mv /usr/local/bin/k9s ~/devops-tools/bin/
+
+- Originally installed into /usr/local/bin via manual download
+- Moved binary to ~/devops-tools/bin/
+- Updated $PATH to prioritize ~/devops-tools/bin
+- Verified with: which k9s ➜ /home/sdev/devops-tools/bin/k9s
 
 # Pushed Changes to GitHub
      ·  cd ~/infrastructure
@@ -247,6 +320,11 @@
 - sudo k3s kubectl get nodes
 - kubectl get nodes    (can be used after sync with kubectl)
 
+# k3s Setup $PATH
+- Located at: /usr/local/bin/k3s
+- Verified with: `which k3s` ➜ /usr/local/bin/k3s
+
+
 # Installed Kind (Kubernetes in Docker)
 - Notes
      ·  Kind runs Kubernetes clusters inside Docker containers.
@@ -266,6 +344,14 @@
 
 # To delete the cluster:
 - kind delete cluster
+
+# Refactoring kind directory after the intial installation & set-up
+-  The Command:
+     ·  sudo mv /usr/local/bin/kind ~/devops-tools/bin/
+- Originally installed into /usr/local/bin via manual download 
+- Moved binary to ~/devops-tools/bin/ 
+- Updated $PATH to prioritize ~/devops-tools/bin
+- Verified with: which kind ➜ /home/sdev/devops-tools/bin/kind
 
 # Installed Minikube (Full-featured Local Cluster)
 - Notes
@@ -290,6 +376,14 @@
 # Delete minikube:
 - minikube delete   (you can delete miikube)
 
+# Refactoring minikube directory after the intial installation & set-up
+-  The Command:
+     ·  sudo mv /usr/local/bin/minikube ~/devops-tools/bin/
+- Originally installed into /usr/local/bin via manual download
+- Moved binary to ~/devops-tools/bin/
+- Updated $PATH to prioritize ~/devops-tools/bin
+- Verified with: which minikube ➜ /home/sdev/devops-tools/bin/minikube
+
 - Notes
      ·  Only one cluster (k3s, kind, or minikube) should be active at a time unless isolated carefully via contexts.
      ·  Check your active context with:
@@ -306,6 +400,7 @@
 ## IaC and Configuration Management tools- Terraform, AWS CLI, Azure CLI, and Ansible
 
 # Installed Terraform
+
 # Download Terraform binary
 - curl -LO https://releases.hashicorp.com/terraform/1.8.4/terraform_1.8.4_linux_amd64.zip
 
@@ -321,6 +416,15 @@
 
 # Optional (Recommended): Clean up
 - rm terraform_1.8.4_linux_amd64.zip
+
+# Refactoring Terraform directory after the intial installation & set-up
+-  The Command:
+     ·  sudo mv /usr/local/bin/terraform ~/devops-tools/bin/
+- Originally installed into /usr/local/bin via manual download 
+- Moved binary to ~/devops-tools/bin/ for version control 
+- Updated $PATH to prioritize ~/devops-tools/bin 
+- Verified with: `which terraform` ➜ /home/sdev/devops-tools/bin/terraform
+
 
 # Installed AWS CLI
 # Download and install AWS CLI v2
@@ -354,12 +458,19 @@
 # Verify installation
 - az version
 
+
 #  Installed Ansible
 - sudo apt update
 - sudo apt install ansible -y
 
 # Verification
 - ansible --version
+
+# Setup $PATH
+- Installed via: apt (system package manager)
+- Binary location: /usr/bin/ansible
+- $PATH: default system path
+- Verified with: `which ansible` ➜ /usr/bin/ansible
 
 # Pushed Changes to GitHub
      ·  cd ~/infrastructure
@@ -424,9 +535,30 @@
      ·  git push -u original main
 
 
+# Verified Custom Tool Path Setup
+- The custom binary directory now contains the following tools:
+
+- ~/devops-tools/bin/
+- ├── docker-compose
+- ├── grafana
+- ├── grafana-cli
+- ├── grafana-server
+- ├── k9s
+- ├── kind
+- ├── kubectl
+- ├── kubectx
+- ├── kubens
+- ├── minikube
+- ├── prometheus
+- ├── promtool
+- ├── terraform
 
 
-
+# Pushed Changes to GitHub
+     ·  cd ~/infrastructure
+     ·  git add setup.md
+     ·  git commit -m "Refactored tool paths to ~/devops-tools/bin and updated PATH"
+     ·  git push -u original main
 
 
 
