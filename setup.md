@@ -1,6 +1,6 @@
-## DevHost Infrastructure Setup
+# DevHost Infrastructure Setup
 
-# Initial Folder Structure 
+## Initial Folder Structure 
 - Created directory structure:  ~/devops-tools/ with subfolders: 
 - mkdir -p ~/devops-tools/{bin,configs,scripts,logs,docs,projects}
 - mkdir -p ~/infrastructure
@@ -14,36 +14,36 @@
      ·  docs/: Markdown notes
      ·  projects/: Your deployments or experiments
 
-# Updated PATH for DevOps Tools To Make PATH Export Persistent
+## Updated PATH for DevOps Tools To Make PATH Export Persistent
 - echo 'export PATH="$HOME/devops-tools/bin:$PATH"' >> ~/.bashrc 
 - source ~/.bashrc
 
-# Applied it immediately:
+## Applied it immediately:
 - source ~/.bashrc
 
-# Git Installation
+## Git Installation
 - sudo apt update
 - sudo apt install git -y
 
-# Set Global Config:
+## Set Global Config:
 - git config --global user.name "Your Full Name"
 - git config --global user.email "your_email@example.com"
 
-# Set default branch name (Optional):
+## Set default branch name (Optional):
 - git config --global init.defaultBranch main
 
-# Initialized Local Git Repo
+## Initialized Local Git Repo
 - cd ~/infrastructure
 - git init
 - git add setup.md
 - git commit -m "Initial infrastructure setup documentation"
 
-# Created a New Repo on GitHub
+## Created a New Repo on GitHub
 -   Navigate to https://github.com/new
 -   Created a New Repo on GitHub: devhost-infra-setup 
 -   Left it empty — didn’t initialize with README, license, or .gitignore as we already have a repo locally.
 
-# SSH Key Setup for GitHub
+## SSH Key Setup for GitHub
 - Note- If you're using SSH keys, this will push your repo without needing username/password. If you're using HTTPS, GitHub may prompt you to authenticate
 
 - Generate a new SSH key
@@ -69,7 +69,7 @@
 - You should see:
 -               Hi githostan! You've successfully authenticated, but GitHub does not provide shell access.
 
-# Connectd Local Repo to GitHub
+## Connectd Local Repo to GitHub
 - Back in the terminal (Inside the ~/infrastructure project folder):
 - git remote add origin git@github.com:githostan/devhost-infra-setup.git
 - git remote set-url origin git@github.com:githostan/devhost-infra-setup.git
@@ -81,21 +81,21 @@
 -                origin  git@github.com:githostan/devhost-infra-setup.git (fetch)
 -                origin  git@github.com:githostan/devhost-infra-setup.git (push)
 
-# Git Setup PATH
+## Git Setup PATH
 - System-installed via package manager (apt)
 - Located at: /usr/bin/git
 - Verified with: `which git` ➜ /usr/bin/git
 
-# Final Push to GitHub
+## Final Push to GitHub
      ·  cd ~/infrastructure
      ·  git add setup.md
      ·  git commit -m "Updated setup.md with SSH setup and GitHub push"
      ·  git push -o original main
 ---
 
-## 🧰 Core Dev Tools Installation (Essential CLI Utilities)
+# Core Dev Tools Installation (Essential CLI Utilities)
 
-# Installed Tools
+## Installed Tools
 - `curl`: Command-line tool for transferring data with URLs.
 - `wget`: Non-interactive downloader for files from the web.
 - `vim`: Lightweight terminal-based text editor.
@@ -103,11 +103,11 @@
 - `tmux`: Terminal multiplexer for managing multiple sessions.
 - `build-essential`: Compiler and build tools (gcc, make, etc.).
 
-# Installation Command
+## Installation Command
 - sudo apt update
 - sudo apt install curl wget vim htop tmux build-essential -y
 
-# After successful install, verified each:
+## After successful install, verified each:
 - curl --version
 - wget --version
 - vim --version
@@ -115,7 +115,7 @@
 - tmux -V
 - gcc --version (build-essential)
 
-# Essential CLI Utilities (System-wide $PATH)
+## Essential CLI Utilities (System-wide $PATH)
 
 - The following tools were installed via the system package manager (`apt`) and are available at their default locations. No relocation or PATH modification was required.
 
@@ -132,52 +132,49 @@
 - `build-essential` is a **meta-package** that installs `gcc`, `make`, and related development tools. It doesn't have its own binary.
 - All binaries are accessible via default system `$PATH`.
 
-# Verified with:
+## Verified with:
 - which wget
 - which vim
 - which htop
 - which tmux
 - which gcc
 
-# Pushed Changes to GitHub
+## Pushed Changes to GitHub
      ·  cd ~/infrastructure
      ·  git add setup.md
      ·  git commit -m "Installed and documented core DevOps CLI tools"
      ·  git push -o original main
 
-## Installed Docker
-
-# Update package index
-- sudo apt update
 
 # Installed Docker
 - sudo apt install docker.io docker-compose -y
 
-# Added my user to the docker group to avoid using sudo
+## Added my user to the docker group to avoid using sudo
 - sudo usermod -aG docker $USER
 - newgrp docker
 
-# Verify installation
+## Verify installation
 - docker --version
 
-# Tested Docker Installation
+## Tested Docker Installation
 - docker run hello-world
 
-# Docker Setup $PATH
+## Docker Setup $PATH
 - System-installed via package manager (apt)
 - Located at: /usr/bin/docker
 - Verified with: `which docker` ➜ /usr/bin/docker
 
 
 # Installed Docker-Compose
-# For the latest Docker Compose version, we installed it manually:
+
+## For the latest Docker Compose version, we installed it manually:
      ·  sudo curl -L "https://github.com/docker/compose/releases/download/v2.38.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
      ·  sudo chmod +x /usr/local/bin/docker-compose
 
-# Installation verification
+## Installation verification
 - docker-compose --version
 
-# Refactoring Docker-compose directory
+## Refactoring Docker-compose directory
 - To improve version control, portability, and isolation, docker-compose was moved from /usr/local/bin to the custom path ~/devops-tools/bin/
 
 - The command:
@@ -188,14 +185,15 @@
 - Updated $PATH to prioritize ~/devops-tools/bin
 - Verified with: which docker-compose ➜ /home/sdev/devops-tools/bin/docker-compose
 
-# Pushed Changes to GitHub
+## Pushed Changes to GitHub
      ·  cd ~/infrastructure
      ·  git add setup.md
      ·  git commit -m "Installed and documented Docker & Docker Compose setup"
      ·  git push -o original main
 
----
-## Installed Kubernetes CLI Tools (kubectl, kubectx, kubens, k9s)
+
+# Installed Kubernetes CLI Tools (kubectl, kubectx, kubens, k9s)
+
 - These tools enhance your productivity when working with Kubernetes clusters as they make working with Kubernetes clusters a lot easier.
 
 - Kubectl- for interacting with, and managing kubernetes clusters
@@ -203,39 +201,38 @@
 - kubens – for switching between namespaces
 - k9s – a powerful terminal UI to explore and manage your cluster
 
-
-# ☸️ kubectl Manual Installation (v1.33.3)
-# Reason
+## ☸️ kubectl Manual Installation (v1.33.3)
+## Reason
 - Legacy APT repo deprecated.
 - Manual install ensures latest version and avoids broken dependencies.
 
-# Steps
+## Steps
 - sudo apt update
 - sudo apt install -y apt-transport-https ca-certificates curl
 
-# Downloaded the latest stable version
+## Downloaded the latest stable version
 - curl -LO "https://dl.k8s.io/release/$(curl -sL https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 
-# Made it executable
+## Made it executable
 - chmod +x kubectl
 
-# Move it to a system path
+## Move it to a system path
 - sudo mv kubectl /usr/local/bin/
 
-# Verified installation
+## Verified installation
 - kubectl version --client
 
-# Bonus: Enable Shell Autocompletion (Bash Completion)
+## Bonus: Enable Shell Autocompletion (Bash Completion)
 - sudo apt install bash-completion -y
 - echo 'source <(kubectl completion bash)' >> ~/.bashrc
 - source ~/.bashrc
 
-# Result
+## Result
      ·  Installed kubectl (Client Version: v1.33.3)
      ·  Bash completion enabled
      ·  Bash completion enabled
 
-# Refactoring kubectl directory after the intial installation & set-up
+## Refactoring kubectl directory after the intial installation & set-up
 -  The Command:
      ·  sudo mv /usr/local/bin/kubectl ~/devops-tools/bin/
 
@@ -245,12 +242,12 @@
 - Verified with: which kubectl ➜ /home/sdev/devops-tools/bin/kubectl
 
 
-# Installed kubectx and kubens (Use GitHub repo (official method))
+## Installed kubectx and kubens (Use GitHub repo (official method))
 - sudo git clone https://github.com/ahmetb/kubectx /opt/kubectx
 - sudo ln -s /opt/kubectx/kubectx /usr/local/bin/kubectx
 - sudo ln -s /opt/kubectx/kubens /usr/local/bin/kubens
 
-# Optional bash completion for these:
+## Optional bash completion for these:
 - ln -s /opt/kubectx/completion/kubens.bash ~/.kubens-completion.bash
 - ln -s /opt/kubectx/completion/kubectx.bash ~/.kubectx-completion.bash
 
@@ -258,7 +255,7 @@
 - echo 'source ~/.kubectx-completion.bash' >> ~/.bashrc
 - source ~/.bashrc
 
-# Refactoring kubectx directory after the intial installation & set-up
+## Refactoring kubectx directory after the intial installation & set-up
 -  The Command:
      ·  sudo mv /usr/local/bin/kubectx ~/devops-tools/bin/
 
@@ -268,25 +265,26 @@
 - Verified with: which kubectx ➜ /home/sdev/devops-tools/bin/kubectx
 
 
-# Installed k9s
-# Downloaded latest release:
+## Installed k9s
+
+## Downloaded latest release:
 - curl -LO https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_amd64.tar.gz
 
-# Extract and install:
+## Extract and install:
 - tar -xzf k9s_Linux_amd64.tar.gz
 - sudo mv k9s /usr/local/bin/
 - rm k9s_Linux_amd64.tar.gz
 
-# Verify:
+## Verify:
 - k9s version
 
-# Notes
+## Notes
 - kubens and kubectx require a valid Kubernetes context to function.
 - kubens does not support a --version flag.
 - K9s installed successfully (v0.50.9).
 - These tools will become active once a cluster is installed (next step).
 
-# Refactoring k9s directory after the intial installation & set-up
+## Refactoring k9s directory after the intial installation & set-up
 -  The Command:
      ·  sudo mv /usr/local/bin/k9s ~/devops-tools/bin/
 
@@ -295,57 +293,57 @@
 - Updated $PATH to prioritize ~/devops-tools/bin
 - Verified with: which k9s ➜ /home/sdev/devops-tools/bin/k9s
 
-# Pushed Changes to GitHub
+## Pushed Changes to GitHub
      ·  cd ~/infrastructure
      ·  git add setup.md
      ·  git commit -m "Installed and documented kubectl, kubectx, kubens, and K9s"
      ·  git push -o original main
 
 
-## Kubernetes Cluster Setup on Ubuntu 24.04 (Mini-PC)
+# Kubernetes Cluster Setup on Ubuntu 24.04 (Mini-PC)
 
-# Installed k3s (Lightweight, Ideal for Mini PC)
+## Installed k3s (Lightweight, Ideal for Mini PC)
 - Notes
      ·  k3s is a lightweight Kubernetes distribution ideal for edge devices and homelabs.
      ·  Automatically installs containerd and sets up a systemd service.
      ·  Uses sudo k3s kubectl unless you symlink it to kubectl
 
-# Installation
+## Installation
 - curl -sfL https://get.k3s.io | sh -
 
-# Check service status:
+## Check service status:
 - sudo systemctl status k3s
 
-# Verify installation:
+## Verify installation:
 - sudo k3s kubectl get nodes
 - kubectl get nodes    (can be used after sync with kubectl)
 
-# k3s Setup $PATH
+## k3s Setup $PATH
 - Located at: /usr/local/bin/k3s
 - Verified with: `which k3s` ➜ /usr/local/bin/k3s
 
 
-# Installed Kind (Kubernetes in Docker)
+## Installed Kind (Kubernetes in Docker)
 - Notes
      ·  Kind runs Kubernetes clusters inside Docker containers.
      ·  Ideal for CI/CD pipelines and testing Kubernetes itself.
 
-# Installation
+## Installation
 - curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.23.0/kind-linux-amd64
 - chmod +x ./kind
 - sudo mv ./kind /usr/local/bin/kind
 
-# Create a cluster:
+## Create a cluster:
 - kind create cluster
 
-# Verify:
+## Verify:
 - kubectl cluster-info --context kind-kind
 - kubectl get nodes
 
-# To delete the cluster:
+## To delete the cluster:
 - kind delete cluster
 
-# Refactoring kind directory after the intial installation & set-up
+## Refactoring kind directory after the intial installation & set-up
 -  The Command:
      ·  sudo mv /usr/local/bin/kind ~/devops-tools/bin/
 - Originally installed into /usr/local/bin via manual download 
@@ -353,30 +351,31 @@
 - Updated $PATH to prioritize ~/devops-tools/bin
 - Verified with: which kind ➜ /home/sdev/devops-tools/bin/kind
 
-# Installed Minikube (Full-featured Local Cluster)
+
+## Installed Minikube (Full-featured Local Cluster)
 - Notes
      ·  Minikube runs a full Kubernetes cluster locally.
      ·  Supports multiple drivers (Docker, VirtualBox, etc.).
      ·  Includes a dashboard and add-ons for enhanced functionality.
 
-# Installation
+## Installation
 - curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 - sudo install minikube-linux-amd64 /usr/local/bin/minikube
 
-# Start minikube:
+## Start minikube:
 - minikube start --driver=docker
 
-# Verify:
+## Verify:
 - minikube status
 - kubectl get nodes
 
-# Stop minikube:
+## Stop minikube:
 - minikube stop
 
-# Delete minikube:
+## Delete minikube:
 - minikube delete   (you can delete miikube)
 
-# Refactoring minikube directory after the intial installation & set-up
+## Refactoring minikube directory after the intial installation & set-up
 -  The Command:
      ·  sudo mv /usr/local/bin/minikube ~/devops-tools/bin/
 - Originally installed into /usr/local/bin via manual download
@@ -391,33 +390,33 @@
 -       To switch context:
      ·  kubectl config use-context <context-name>
 
-# Pushed Changes to GitHub
+## Pushed Changes to GitHub
      ·  cd ~/infrastructure
      ·  git add setup.md
      ·  git commit -m "Installed and documented k3s, Kind, and Minikube clusters"
      ·  git push -o original main
 
-## IaC and Configuration Management tools- Terraform, AWS CLI, Azure CLI, and Ansible
+# IaC and Configuration Management tools- Terraform, AWS CLI, Azure CLI, and Ansible
 
-# Installed Terraform
+## Installed Terraform
 
-# Download Terraform binary
+## Download Terraform binary
 - curl -LO https://releases.hashicorp.com/terraform/1.8.4/terraform_1.8.4_linux_amd64.zip
 
-# Unzip and move to /usr/local/bin
+## Unzip and move to /usr/local/bin
 - unzip terraform_1.8.4_linux_amd64.zip
 
-# Move the binary to /usr/local/bin
+## Move the binary to /usr/local/bin
 - sudo mv terraform /usr/local/bin/
 - This puts Terraform in your system's PATH, making it globally accessible.
 
-# Verify installation:
+## Verify installation:
 - terraform version
 
-# Optional (Recommended): Clean up
+## Optional (Recommended): Clean up
 - rm terraform_1.8.4_linux_amd64.zip
 
-# Refactoring Terraform directory after the intial installation & set-up
+## Refactoring Terraform directory after the intial installation & set-up
 -  The Command:
      ·  sudo mv /usr/local/bin/terraform ~/devops-tools/bin/
 - Originally installed into /usr/local/bin via manual download 
@@ -427,35 +426,38 @@
 
 
 # Installed AWS CLI
-# Download and install AWS CLI v2
+
+## Download and install AWS CLI v2
 - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 - unzip awscliv2.zip
 - sudo ./aws/install
 
-# Verify installation
+## Verify installation
 - aws --version
 
-# Clean up installer
+## Clean up installer
 - rm -rf aws awscliv2.zip
 
-## Installed Azure CLI
-# Install Azure CLI Manually (Recommended for Ubuntu 24.04)
+
+# Installed Azure CLI
+
+## Install Azure CLI Manually (Recommended for Ubuntu 24.04)
 - Let’s use the official Microsoft method that works reliably across modern Ubuntu systems:
 
-# Add Microsoft’s GPG Key
+## Add Microsoft’s GPG Key
 - curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 - sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
 - rm microsoft.gpg
 
-# Add Microsoft APT Repo
+## Add Microsoft APT Repo
 - sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ noble main" > /etc/apt/sources.list.d/azure-cli.list'
 - We use noble here since that’s your current Ubuntu version.
 
-# Install the Azure CLI
+## Install the Azure CLI
 - sudo apt update
 - sudo apt install azure-cli -y
 
-# Verify installation
+## Verify installation
 - az version
 
 
@@ -463,72 +465,72 @@
 - sudo apt update
 - sudo apt install ansible -y
 
-# Verification
+## Verification
 - ansible --version
 
-# Setup $PATH
+## Setup $PATH
 - Installed via: apt (system package manager)
 - Binary location: /usr/bin/ansible
 - $PATH: default system path
 - Verified with: `which ansible` ➜ /usr/bin/ansible
 
-# Pushed Changes to GitHub
+## Pushed Changes to GitHub
      ·  cd ~/infrastructure
      ·  git add setup.md
      ·  git commit -m "Installed and documented Terraform, AWS CLI, Azuere CLI,and Ansible "
      ·  git push -o original main
 
 
-## Monitoring & Observability — Prometheus & Grafana
+# Monitoring & Observability — Prometheus & Grafana
 
-# Installed Prometheus (Manual)
+## Installed Prometheus (Manual)
 - Prometheus is a time-series database and monitoring system designed for reliability and scalability.
 
-# Created directory for Prometheus binaries
+## Created directory for Prometheus binaries
 - mkdir -p ~/devops-tools/bin/prometheus
 - cd ~/devops-tools/bin/prometheus
 
-# Download and extract Prometheus
+## Download and extract Prometheus
 - curl -LO https://github.com/prometheus/prometheus/releases/download/v2.52.0/prometheus-2.52.0.linux-amd64.tar.gz
 - tar -xvf prometheus-2.52.0.linux-amd64.tar.gz
 - mv prometheus-2.52.0.linux-amd64 prometheus
 - rm prometheus-2.52.0.linux-amd64.tar.gz
 
-# Move Prometheus runtime files
+## Move Prometheus runtime files
 - mv prometheus ~/devops-tools/prometheus-runtime
 
-# Set execute permission (optional)
+## Set execute permission (optional)
 - chmod +x ~/devops-tools/bin/prometheus ~/devops-tools/bin/promtool
 
-# Verify installation
+## Verify installation
 - prometheus --version
 - promtool --version
 
 
-# Installed Grafana (manual install)
+## Installed Grafana (manual install)
 - Grafana visualizes metrics from Prometheus and other sources.
 
-# Created working directory
+## Created working directory
 - mkdir -p ~/devops-tools/grafana
 - cd ~/devops-tools/grafana
 
-# Download Grafana OSS tarball
+## Download Grafana OSS tarball
 - curl -LO https://dl.grafana.com/oss/release/grafana-10.4.0.linux-amd64.tar.gz
 
-# Extracted it
+## Extracted it
 - tar -xzf grafana-10.4.0.linux-amd64.tar.gz
 
-# Move Grafana executables to local bin directory
+## Move Grafana executables to local bin directory
 - mv grafana-v10.4.0/bin/grafana* ~/devops-tools/bin/
 
-# Make binaries executable
+## Make binaries executable
 - chmod +x ~/devops-tools/bin/grafana*
 
-#  Verify installation
+##  Verify installation
 - grafana-server -v
 - grafana-cli -v
 
-# Pushed Changes to GitHub
+## Pushed Changes to GitHub
      ·  cd ~/infrastructure
      ·  git add setup.md
      ·  git commit -m "Installed and documented Prometheus & Grafana"
@@ -553,8 +555,7 @@
 - ├── promtool
 - ├── terraform
 
-
-# Pushed Changes to GitHub
+## Pushed Changes to GitHub
      ·  cd ~/infrastructure
      ·  git add setup.md
      ·  git commit -m "Refactored tool paths to ~/devops-tools/bin and updated PATH"
